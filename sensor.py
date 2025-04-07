@@ -2,12 +2,24 @@ import time
 import random
 import mysql.connector
 from datetime import datetime
+import signal
 
+# Global flag
+running = True
+
+def stop_handler(signum, frame):
+    global running
+    print("Stopping script...")
+    running = False
+
+# Register signal handlers
+signal.signal(signal.SIGTERM, stop_handler)
+signal.signal(signal.SIGINT, stop_handler)
 # MySQL setup
 db = mysql.connector.connect(
     host="localhost",
-    user="iotuser",
-    password="iotpass",
+    user="newuser",
+    password="newpass",
     database="iot_data"
 )
 cursor = db.cursor()
@@ -36,7 +48,7 @@ def log_to_db(temperature, pressure):
     db.commit()
 
 if __name__ == "__main__":
-    while True:
+    while running:
         temp, pres = simulate_bmp280()
         log_to_db(temp, pres)
         print(f"[{datetime.now()}] Simulated BMP280 → Temp: {temp}°C | Pressure: {pres} hPa")
