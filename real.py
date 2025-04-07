@@ -1,4 +1,5 @@
-#simulation
+
+#real 
 import time
 import mysql.connector
 from datetime import datetime
