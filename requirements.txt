@@ -1,4 +1,4 @@
 mysql-connector-python==9.2.0
 #Only add this if running real.py verion
-# adafruit-circuitpython-bmp280==3.3.6
-# lgpio
+adafruit-circuitpython-bmp280==3.3.6
+lgpio
