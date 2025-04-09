@@ -22,7 +22,7 @@ signal.signal(signal.SIGINT, stop_handler)
 
 # BMP280 setup
 i2c = busio.I2C(board.SCL, board.SDA)
-bmp280 = adafruit_bmp280.Adafruit_BMP280_I2C(i2c)
+bmp280 = adafruit_bmp280.Adafruit_BMP280_I2C(i2c,address=0x76)
 
 # Optional: set sea-level pressure for accurate altitude
 bmp280.sea_level_pressure = 1013.25
